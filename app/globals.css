@@ -1,0 +1,127 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* YS Teras Maju Brand Colors - Using exact hex values */
+  --background: #050507; /* Very dark background */
+  --foreground: #e9e9f0; /* Light gray/lavender text */
+  --card: #0d0d10; /* Slightly lighter than background for cards */
+  --card-foreground: #e9e9f0; /* Light gray/lavender text */
+  --popover: #050507; /* Very dark */
+  --popover-foreground: #e9e9f0; /* Light gray/lavender */
+  --primary: #a4a4c2; /* Muted purple/lavender primary */
+  --primary-foreground: #050507; /* Dark text on primary */
+  --secondary: #635b42; /* Muted brown/tan */
+  --secondary-foreground: #e9e9f0; /* Light text on secondary */
+  --muted: #1a1a1f; /* Muted dark */
+  --muted-foreground: #b8b8cc; /* Muted light purple */
+  --accent: #8eac83; /* Sage green accent */
+  --accent-foreground: #050507; /* Dark text on accent */
+  --destructive: #dc2626;
+  --destructive-foreground: #fef2f2;
+  --border: #2a2a30; /* Subtle border color */
+  --input: #1a1a1f; /* Input background */
+  --ring: #a4a4c2; /* Focus ring matches primary */
+  --chart-1: #a4a4c2;
+  --chart-2: #8eac83;
+  --chart-3: #635b42;
+  --chart-4: #b8b8cc;
+  --chart-5: #7a9a71;
+  --radius: 0.625rem;
+  --sidebar: #050507;
+  --sidebar-foreground: #e9e9f0;
+  --sidebar-primary: #a4a4c2;
+  --sidebar-primary-foreground: #050507;
+  --sidebar-accent: #8eac83;
+  --sidebar-accent-foreground: #050507;
+  --sidebar-border: #2a2a30;
+  --sidebar-ring: #a4a4c2;
+}
+
+.dark {
+  --background: #141821;
+  --foreground: #e5e7eb;
+  --card: #1f2937;
+  --card-foreground: #e5e7eb;
+  --popover: #1f2937;
+  --popover-foreground: #e5e7eb;
+  --primary: #3b82f6;
+  --primary-foreground: #ffffff;
+  --secondary: #ec4899;
+  --secondary-foreground: #ffffff;
+  --muted: #4b5563;
+  --muted-foreground: #e5e7eb;
+  --accent: #f97316;
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #d1d5db;
+  --input: #ffffff;
+  --ring: #3b82f6;
+  --chart-1: #3b82f6;
+  --chart-2: #ec4899;
+  --chart-3: #1b2282;
+  --chart-4: #a8d5c8;
+  --chart-5: #5a2d9f;
+  --radius: 0.625rem;
+  --sidebar: #1f2937;
+  --sidebar-foreground: #e5e7eb;
+  --sidebar-primary: #3b82f6;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f97316;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #d1d5db;
+  --sidebar-ring: #3b82f6;
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
