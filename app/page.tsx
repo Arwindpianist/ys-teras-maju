@@ -33,7 +33,14 @@ export default function HomePage() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <div className="text-xl font-bold text-primary">YS Teras Maju (M) Sdn Bhd</div>
+            <div className="flex items-center gap-3">
+              <img 
+                src="/ys-teras-maju-high-resolution-logo-removebg-preview.png" 
+                alt="YS Teras Maju Logo" 
+                className="h-10 w-auto"
+              />
+              <div className="text-lg font-bold text-primary">YS Teras Maju (M) Sdn Bhd</div>
+            </div>
             <div className="hidden md:flex items-center gap-8">
               <a href="#about" className="text-sm text-foreground hover:text-primary transition-colors">
                 About
@@ -62,23 +69,28 @@ export default function HomePage() {
           <img
             src="/modern-technology-circuit-board-abstract-dark-gree.jpg"
             alt="Technology background"
-            className="w-full h-full object-cover opacity-30"
+            className="w-full h-full object-cover opacity-60"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/85 to-background" />
         </div>
 
         {/* Hero Content */}
         <div className="container mx-auto px-4 lg:px-8 relative z-10 text-center pt-16">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-primary text-balance">YS Teras Maju (M) Sdn Bhd</h1>
-          <p className="text-xl md:text-3xl text-foreground mb-4 max-w-4xl mx-auto text-balance leading-relaxed font-semibold">
-            Your Trusted Partner in IT, Electrical & Civil Solutions
-          </p>
+          <div className="flex justify-center mb-8">
+            <img 
+              src="/ys-teras-maju-high-resolution-logo.png" 
+              alt="YS Teras Maju High Resolution Logo" 
+              className="h-32 md:h-40 w-auto"
+            />
+          </div>
+          <h1 className="text-5xl md:text-7xl font-bold mb-4 text-primary text-balance">YS Teras Maju (M) Sdn Bhd</h1>
+          <p className="text-lg md:text-xl font-medium mb-6 text-primary/70 text-balance italic">The smart solution path</p>
           <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-3xl mx-auto text-balance leading-relaxed">
             Delivering comprehensive technology infrastructure, mechanical & electrical services, and civil engineering
             solutions across Malaysia's leading industries
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground text-lg px-8 py-6" asChild>
+            <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground text-lg px-8 py-6" asChild>
               <a href="#services">Explore Our Services</a>
             </Button>
             <Button
