@@ -796,9 +796,9 @@ export default function HomePage() {
                     <div>
                       <p className="font-semibold text-accent-foreground mb-1">Phone</p>
                       <p className="text-accent-foreground/80">
-                        Office: [Insert Office Phone]
+                        Office: +60362433684
                         <br />
-                        Mobile: [Insert Mobile Phone]
+                        Handphone: +60192273131
                       </p>
                     </div>
                   </div>
@@ -810,11 +810,7 @@ export default function HomePage() {
                     <div>
                       <p className="font-semibold text-accent-foreground mb-1">Email</p>
                       <p className="text-accent-foreground/80">
-                        General: [Insert General Email]
-                        <br />
-                        Sales: [Insert Sales Email]
-                        <br />
-                        Support: [Insert Support Email]
+                        info@terasmaju.com
                       </p>
                     </div>
                   </div>
