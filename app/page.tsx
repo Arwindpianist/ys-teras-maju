@@ -1,7 +1,11 @@
+'use client'
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { useToast } from "@/hooks/use-toast"
+import { useState } from "react"
 import {
   Building2,
   Cpu,
@@ -27,6 +31,67 @@ import {
 } from "lucide-react"
 
 export default function HomePage() {
+  const { toast } = useToast()
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    company: '',
+    subject: '',
+    message: ''
+  })
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (response.ok) {
+        toast({
+          title: "Message sent successfully!",
+          description: "Thank you for contacting us. We'll get back to you soon.",
+        })
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          company: '',
+          subject: '',
+          message: ''
+        })
+      } else {
+        throw new Error('Failed to send message')
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again later.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <div className="min-h-screen">
       {/* Navigation */}
@@ -836,10 +901,13 @@ export default function HomePage() {
               {/* Contact Form */}
               <div className="bg-background rounded-lg p-8 border border-border">
                 <h3 className="text-xl font-bold text-foreground mb-6">Send Us A Message</h3>
-                <form className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <Input
+                        name="firstName"
+                        value={formData.firstName}
+                        onChange={handleInputChange}
                         placeholder="First Name *"
                         className="bg-card border-border text-foreground placeholder:text-muted-foreground"
                         required
@@ -847,6 +915,9 @@ export default function HomePage() {
                     </div>
                     <div>
                       <Input
+                        name="lastName"
+                        value={formData.lastName}
+                        onChange={handleInputChange}
                         placeholder="Last Name *"
                         className="bg-card border-border text-foreground placeholder:text-muted-foreground"
                         required
@@ -855,7 +926,10 @@ export default function HomePage() {
                   </div>
                   <div>
                     <Input
+                      name="email"
                       type="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
                       placeholder="Email Address *"
                       className="bg-card border-border text-foreground placeholder:text-muted-foreground"
                       required
@@ -863,19 +937,28 @@ export default function HomePage() {
                   </div>
                   <div>
                     <Input
+                      name="phone"
                       type="tel"
+                      value={formData.phone}
+                      onChange={handleInputChange}
                       placeholder="Phone Number"
                       className="bg-card border-border text-foreground placeholder:text-muted-foreground"
                     />
                   </div>
                   <div>
                     <Input
+                      name="company"
+                      value={formData.company}
+                      onChange={handleInputChange}
                       placeholder="Company Name"
                       className="bg-card border-border text-foreground placeholder:text-muted-foreground"
                     />
                   </div>
                   <div>
                     <Input
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleInputChange}
                       placeholder="Subject *"
                       className="bg-card border-border text-foreground placeholder:text-muted-foreground"
                       required
@@ -883,6 +966,9 @@ export default function HomePage() {
                   </div>
                   <div>
                     <Textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
                       placeholder="Tell us about your project requirements *"
                       rows={5}
                       className="bg-card border-border text-foreground placeholder:text-muted-foreground resize-none"
@@ -891,9 +977,10 @@ export default function HomePage() {
                   </div>
                   <Button
                     type="submit"
-                    className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold"
+                    disabled={isSubmitting}
+                    className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold disabled:opacity-50"
                   >
-                    Send Message
+                    {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
                   <p className="text-xs text-muted-foreground text-center">
                     By submitting this form, you agree to our privacy policy and terms of service
