@@ -27,9 +27,9 @@ export async function POST(request: NextRequest) {
 
     // Email content
     const mailOptions = {
-      from: `"${firstName} ${lastName}" <${email}>`,
+      from: `"YS Teras Maju Contact Form" <${process.env.ZOHO_EMAIL_USER}>`,
       to: 'info@terasmaju.com',
-      replyTo: email,
+      replyTo: `"${firstName} ${lastName}" <${email}>`,
       subject: `Contact Form: ${subject}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
